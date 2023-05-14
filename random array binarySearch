@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+using namespace std;
+int binarySearch(int arr[], int left, int right, int target) 
+{
+    while (left <= right) 
+    {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;
+        }
+
+        if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+int main() 
+{
+    srand(time(0));
+    const int SIZE = 50;
+    int arr[SIZE];  
+    for (int i = 0; i < SIZE; i++) 
+    {
+        arr[i] = rand() % 51 + 50;
+    }
+    for (int i = 0; i < SIZE; i++) 
+    {
+        cout << arr[i] << " ";
+    }
+    cout<<endl;
+    sort(arr, arr + SIZE); 
+    int index = binarySearch(arr, 0, SIZE - 1, 69);
+    if (index != -1) 
+    {
+        cout << "Number 69 found at index " << index <<endl;
+    } else 
+    {
+        cout << "Number 69 not found in the array." <<endl;
+    }
+    return 0;
+}
